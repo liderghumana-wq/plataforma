@@ -1,0 +1,17 @@
+export * from './types/centroEjecutivo.types';
+export * from './services/alertasService';
+export * from './services/accionesService';
+export * from './services/centroEjecutivoService';
+export * from './components/ExecutiveHeader';
+export * from './components/ResumenEjecutivoTab';
+export * from './components/HealthScoreTab';
+export * from './components/IndicadoresSstTab';
+export * from './components/RiesgosPrioritariosTab';
+export * from './components/CalidadDatosTab';
+export * from './components/CumplimientoTab';
+export * from './components/AccionesPendientesTab';
+export * from './components/InteligenciaIaTab';
+export * from './components/LicenciamientoCapacidadTab';
+export * from './components/TendenciasTab';
+export * from './components/AlertasPanel';
+export { CentroEjecutivoModule } from './CentroEjecutivoModule';

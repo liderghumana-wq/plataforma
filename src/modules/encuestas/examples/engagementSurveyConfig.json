@@ -1,0 +1,60 @@
+{
+  "id": "compromiso_engagement_q12",
+  "name": "Auditoría de Engagement Laboral (Estilo Gallup Q12)",
+  "description": "Fórmula universal para auditar el sentido de pertenencia, claridad de expectativas y reconocimiento operativo.",
+  "responseType": "Likert5",
+  "options": [
+    { "value": 1, "label": "Muy en desacuerdo", "aliases": ["muy en desacuerdo", "nunca", "1"] },
+    { "value": 2, "label": "En desacuerdo", "aliases": ["en desacuerdo", "desacuerdo", "casi nunca", "2"] },
+    { "value": 3, "label": "Neutro", "aliases": ["neutro", "indiferente", "regular", "algunas veces", "3"] },
+    { "value": 4, "label": "De acuerdo", "aliases": ["de acuerdo", "acuerdo", "casi siempre", "4"] },
+    { "value": 5, "label": "Muy de acuerdo", "aliases": ["muy de acuerdo", "total acuerdo", "siempre", "5"] }
+  ],
+  "dimensions": [
+    { "id": "expectativas", "name": "Claridad y Recursos", "description": "Sé qué se espera de mí y cuento con los materiales necesarios para cumplir mi rol." },
+    { "id": "reconocimiento", "name": "Reconocimiento y Crecimiento", "description": "He recibido elogios en los últimos 7 días y alguien promueve mi desarrollo." },
+    { "id": "pertenencia", "name": "Sentido de Propósito", "description": "La misión de la compañía me hace sentir que mi trabajo es importante." }
+  ],
+  "questions": [
+    { "id": "q1", "text": "Sé exactamente lo que se espera de mí en mi trabajo diario.", "dimensionId": "expectativas", "aliases": ["expectativas claras", "que se espera", "engagement 1"] },
+    { "id": "q2", "text": "Tengo los materiales y equipos que necesito para hacer mi trabajo bien.", "dimensionId": "expectativas", "aliases": ["materiales equipos", "recursos", "engagement 2"] },
+    { "id": "q3", "text": "He recibido reconocimiento o elogios por hacer un buen trabajo en los últimos siete días.", "dimensionId": "reconocimiento", "aliases": ["reconocimiento 7 dias", "elogios", "engagement 3"] },
+    { "id": "q4", "text": "La misión o propósito de mi empresa me hace sentir que mi trabajo es importante.", "dimensionId": "pertenencia", "aliases": ["mision proposito", "trabajo importante", "engagement 4"] },
+    { "id": "q5", "text": "En el último año, he tenido oportunidades en el trabajo para aprender y crecer.", "dimensionId": "reconocimiento", "aliases": ["aprender crecer", "oportunidades crecimiento", "engagement 5"] }
+  ],
+  "formulas": [
+    { "id": "engagement_global", "name": "Engagement Promedio (%)", "expression": "FAVORABILITY_PCT", "targetDimensionIds": ["expectativas", "reconocimiento", "pertenencia"] }
+  ],
+  "charts": [
+    { "id": "chart_eng", "title": "Porcentajes de Compromiso por Dimensión", "type": "BAR", "dataSource": "DIMENSIONS" }
+  ],
+  "interpretations": [
+    {
+      "id": "eng_saludable",
+      "metricId": "engagement_global",
+      "minVal": 80,
+      "maxVal": 100,
+      "title": "Compromiso Sobresaliente (Fuerza Laboral Comprometida)",
+      "text": "Los colaboradores muestran un altísimo compromiso emocional con la empresa. Conocen sus objetivos, se sienten valorados y alineados con el propósito estratégico.",
+      "level": "Saludable"
+    },
+    {
+      "id": "eng_regular",
+      "metricId": "engagement_global",
+      "minVal": 65,
+      "maxVal": 79.99,
+      "title": "Compromiso Moderado (Alerta de Desconexión Pasiva)",
+      "text": "Existe un grupo significativo de colaboradores 'no comprometidos' de forma activa. Podrían estar haciendo el mínimo esfuerzo debido a una aparente falta de reconocimiento o retroalimentación sobre su crecimiento.",
+      "level": "Regular"
+    },
+    {
+      "id": "eng_critico",
+      "metricId": "engagement_global",
+      "minVal": 0,
+      "maxVal": 64.99,
+      "title": "Desconexión Activa / Riesgo de Deserción Masiva",
+      "text": "Alerta crítica de 'quiet quitting' o desconexión activa. Los colaboradores sienten que no tienen los recursos, que su trabajo no importa, o que no son valorados en lo absoluto. Plan urgente de retención.",
+      "level": "Crítico"
+    }
+  ]
+}

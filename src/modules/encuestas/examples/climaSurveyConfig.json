@@ -1,0 +1,60 @@
+{
+  "id": "clima_organizacional_standard",
+  "name": "Encuesta Estándar de Clima y Liderazgo",
+  "description": "Evaluación de variables de dirección, bienestar, remuneración y pertenencia organizacional.",
+  "responseType": "Likert5",
+  "options": [
+    { "value": 1, "label": "Muy en desacuerdo", "aliases": ["muy en desacuerdo", "total desacuerdo", "nunca", "1"] },
+    { "value": 2, "label": "En desacuerdo", "aliases": ["en desacuerdo", "desacuerdo", "casi nunca", "2"] },
+    { "value": 3, "label": "Neutro", "aliases": ["neutro", "indiferente", "regular", "algunas veces", "3"] },
+    { "value": 4, "label": "De acuerdo", "aliases": ["de acuerdo", "acuerdo", "casi siempre", "4"] },
+    { "value": 5, "label": "Muy de acuerdo", "aliases": ["muy de acuerdo", "total acuerdo", "siempre", "5"] }
+  ],
+  "dimensions": [
+    { "id": "liderazgo", "name": "Liderazgo y Dirección", "description": "Relación con líderes, asertividad directiva y retroalimentación." },
+    { "id": "comunicacion", "name": "Canales de Comunicación", "description": "Trasparencia, flujo vertical y horizontal de la información." },
+    { "id": "bienestar", "name": "Ambiente y Bienestar", "description": "Equilibrio vida-trabajo, ergonometría y seguridad psicológica." }
+  ],
+  "questions": [
+    { "id": "p1", "text": "Mi jefe inmediato me da retroalimentación constante sobre mi desempeño.", "dimensionId": "liderazgo", "aliases": ["jefe inmediato", "retroalimentacion jefe", "liderazgo 1"] },
+    { "id": "p2", "text": "Los líderes de la compañía inspiran confianza y actúan con ética.", "dimensionId": "liderazgo", "aliases": ["lideres inspiran", "etica directivos", "liderazgo 2"] },
+    { "id": "p3", "text": "La información relevante sobre cambios en la empresa se comunica a tiempo.", "dimensionId": "comunicacion", "aliases": ["comunicacion cambios", "informacion tiempo", "comunicacion 1"] },
+    { "id": "p4", "text": "Existe un ambiente seguro donde puedo expresar mis opiniones con tranquilidad.", "dimensionId": "bienestar", "aliases": ["expresar opiniones", "seguridad psicologica", "ambiente seguro"] },
+    { "id": "p5", "text": "La empresa apoya activamente el equilibrio entre mi vida personal y laboral.", "dimensionId": "bienestar", "aliases": ["equilibrio vida", "vida laboral", "tiempo libre"] }
+  ],
+  "formulas": [
+    { "id": "clima_global", "name": "Favorabilidad Promedio Global (%)", "expression": "FAVORABILITY_PCT", "targetDimensionIds": ["liderazgo", "comunicacion", "bienestar"] }
+  ],
+  "charts": [
+    { "id": "chart_dim", "title": "Favorabilidad por Dimensión", "type": "BAR", "dataSource": "DIMENSIONS" }
+  ],
+  "interpretations": [
+    {
+      "id": "int_saludable",
+      "metricId": "clima_global",
+      "minVal": 75,
+      "maxVal": 100,
+      "title": "Estatus General: Clima Altamente Favorable",
+      "text": "Los niveles de favorabilidad indican un excelente acople cultural. El liderazgo fomenta un alto sentido de bienestar y los canales informativos operan de forma óptima. Mantener incentivos de retención.",
+      "level": "Saludable"
+    },
+    {
+      "id": "int_regular",
+      "metricId": "clima_global",
+      "minVal": 60,
+      "maxVal": 74.99,
+      "title": "Estatus General: Clima Estable por Monitorear",
+      "text": "Se registran fortalezas individuales, pero coexisten vulnerabilidades significativas en la consistencia de los líderes o el equilibrio vida-trabajo. Se aconseja capacitar mandos medios.",
+      "level": "Regular"
+    },
+    {
+      "id": "int_critico",
+      "metricId": "clima_global",
+      "minVal": 0,
+      "maxVal": 59.99,
+      "title": "Estatus General: Foco Rojo / Clima Crítico",
+      "text": "La favorabilidad global se encuentra por debajo de los estándares aceptables. Existe frustración acumulada en la comunicación corporativa o tensiones laborales. Se requiere mesas de diálogo directivas inmediatas.",
+      "level": "Crítico"
+    }
+  ]
+}

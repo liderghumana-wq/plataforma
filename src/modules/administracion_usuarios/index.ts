@@ -1,0 +1,1 @@
+export { AdministracionUsuariosModule } from './AdministracionUsuariosModule';
